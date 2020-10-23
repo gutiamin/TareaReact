@@ -1,17 +1,50 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import Form from "./components/form";
+import Select from "./components/select";
+import Button from "./components/button";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+function Index() {
+    const data = [
+      {
+        id: "1",
+        name: "One"
+      },
+      {
+        id: "2",
+        name: "Two"
+      },
+      {
+        id: "3",
+        name: "Three"
+      },
+      {
+        id: "4",
+        name: "Four"
+      }
+    ];
+
+    function handleChange(event) {
+      console.log(event.target.value);
+    }
+
+    function onSelectChange(event) {
+      console.log(event.target.value);
+    }
+
+    return (
+      <div className="Index">
+        <form>
+          <Form type={"text"} onChange={handleChange} />
+          <Form type={"email"} onChange={handleChange} />
+          <div>
+            <Select data={data} onSelectChange={onSelectChange} />
+          </div>          
+          <Button variant="danger">Button</Button>
+        </form>
+      </div>
+    );
+  }
+
+ReactDOM.render(<Index/> , document.getElementById("root") )
